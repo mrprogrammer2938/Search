@@ -1,0 +1,83 @@
+#!/usr/bin/python3
+# This Programm Write by Mr.nope
+# Search v1.3.2
+import os
+import time
+import sys
+from ctypes import windll as win
+import platform
+import webbrowser
+try:
+    from colorama import Fore,init
+    init()
+except ImportError:
+    os.system("pip3 install colorama")
+End = '\033[0m'
+system = platform.uname()[0]
+Run_Err = "\nPlease, Run This Programm on Linux, Windows or MacOS!\n"
+opt = Fore.CYAN + "\nSearch: " + End
+banner = Fore.BLUE + """
+.d88888b                                      dP    """ + Fore.YELLOW + """   
+88.    "'                                     88       """ + Fore.GREEN + """
+`Y88888b. .d8888b. .d8888b. 88d888b. .d8888b. 88d888b. """ + Fore.RED + """
+      `8b 88ooood8 88'  `88 88'  `88 88'  `"" 88'  `88 """ + Fore.BLUE + """
+d8'   .8P 88.  ... 88.  .88 88       88.  ... 88    88 """ + Fore.YELLOW + """
+ Y88888P  `88888P' `88888P8 dP       `88888P' dP    dP \n""" + End
+def title():
+    if system == 'Linux':
+        os.system("printf '\033]2;Search\a'")
+    elif system == 'Windows':
+        win.kernel32.SetConsoleTitleW("Search")
+    else:
+        print(Run_Err)
+        sys.exit()
+def cls():
+    if system == 'Linux':
+        os.system("clear")
+    elif system == 'Windows':
+        os.system("cls")
+    else:
+        print(Run_Err)
+        sys.exit()
+def main():
+    title()
+    cls()
+    print(banner)
+    seu = input(opt)
+    run = webbrowser.open_new_tab(f"https://www.google.com/search?q={seu}")
+    if run == True:
+        print("\nOpenning {}".format(seu))
+    else:
+        print("\nError To Run!")
+        sys.exit()
+    try1()
+def try1():
+    try_again = input("\nDo you want to try again? [y/n] ")
+    if try_again == 'y':
+        main()
+    elif try_again == 'n':
+        try2()
+    else:
+        try1()
+def try2():
+    try_to_exit = input("\npress Enter...")
+    if try_to_exit == '':
+        ext()
+    else:
+        ext()
+def ext():
+    cls()
+    print(Fore.GREEN + "Exiting..." + End)
+    sys.exit()
+if __name__ == '__main__':
+    try:
+        try:
+            main()
+        except KeyboardInterrupt:
+            print("\nCtrl + C")
+            print("\nExiting...")
+            sys.exit()
+    except EOFError:
+        print("\nCtrl + D")
+        print("\nExiting...")
+        sys.exit()
